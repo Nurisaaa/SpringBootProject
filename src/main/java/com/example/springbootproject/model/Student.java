@@ -9,6 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 import static javax.persistence.CascadeType.*;
+import static javax.persistence.FetchType.EAGER;
 
 @Entity
 @Data
@@ -29,7 +30,6 @@ public class Student {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    private String email;
     @Enumerated
     @Column(name = "study_format")
     private StudyFormat studyFormat;
@@ -37,4 +37,10 @@ public class Student {
     @ManyToOne(cascade = {PERSIST, MERGE, DETACH, REFRESH})
     @JoinColumn(name = "group_id")
     private Group group;
+
+    @OneToOne(cascade = {MERGE, REFRESH, PERSIST},
+            orphanRemoval = true,
+            fetch = EAGER)
+    private AuthInfo authInfo;
+
 }

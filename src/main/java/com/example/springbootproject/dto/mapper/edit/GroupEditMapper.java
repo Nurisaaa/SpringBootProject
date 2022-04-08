@@ -1,4 +1,4 @@
-package com.example.springbootproject.mapper.edit;
+package com.example.springbootproject.dto.mapper.edit;
 
 import com.example.springbootproject.dto.request.GroupRequest;
 import com.example.springbootproject.model.Course;

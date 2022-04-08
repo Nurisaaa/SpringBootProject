@@ -1,4 +1,4 @@
-package com.example.springbootproject.mapper.view;
+package com.example.springbootproject.dto.mapper.view;
 
 import com.example.springbootproject.dto.responce.CourseResponse;
 import com.example.springbootproject.model.Course;

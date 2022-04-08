@@ -1,7 +1,9 @@
-package com.example.springbootproject.mapper.edit;
+package com.example.springbootproject.dto.mapper.edit;
 
 import com.example.springbootproject.dto.request.CompanyRequest;
+import com.example.springbootproject.model.AuthInfo;
 import com.example.springbootproject.model.Company;
+import com.google.common.base.Strings;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,7 +20,7 @@ public class CompanyEditMapper {
     }
 
     public void update(Company company, CompanyRequest companyRequest) {
-        company.setName(companyRequest.getName());
+            company.setName(companyRequest.getName());
         company.setLocatedCountry(companyRequest.getLocatedCountry());
     }
 }

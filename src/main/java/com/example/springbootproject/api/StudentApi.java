@@ -6,6 +6,7 @@ import com.example.springbootproject.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
 import java.util.List;
 
 @RestController
@@ -15,12 +16,15 @@ public class StudentApi {
     private final StudentService studentService;
 
     @PostMapping
-    public StudentResponse saveStudents(@RequestBody StudentRequest studentRequest, @PathVariable("groupId") Long id) {
+    @PermitAll
+    public StudentResponse saveStudents(@RequestBody StudentRequest studentRequest,
+                                        @PathVariable("groupId") Long id) {
         return studentService.saveStudent(id, studentRequest);
     }
 
     @PatchMapping("{id}")
-    public StudentResponse updateStudent(@RequestBody StudentRequest studentRequest, @PathVariable("id") Long id) {
+    public StudentResponse updateStudent(@RequestBody StudentRequest studentRequest,
+                                         @PathVariable("id") Long id) {
         return studentService.updateStudent(id, studentRequest);
     }
 

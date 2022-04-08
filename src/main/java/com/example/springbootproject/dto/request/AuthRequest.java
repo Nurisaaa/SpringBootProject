@@ -3,11 +3,8 @@ package com.example.springbootproject.dto.request;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-public class TeacherRequest {
-    private String firstName;
-    private String lastName;
+@Getter @Setter
+public class AuthRequest {
     private String email;
     private String password;
 }

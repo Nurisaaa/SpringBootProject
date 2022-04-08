@@ -16,7 +16,8 @@ public class GroupApi {
     private final GroupService groupService;
 
     @PostMapping
-    public GroupResponse saveGroup(@RequestBody GroupRequest groupRequest, @PathVariable("courseId") Long id) {
+    public GroupResponse saveGroup(@RequestBody GroupRequest groupRequest,
+                                   @PathVariable("courseId") Long id) {
         return groupService.saveGroup(id, groupRequest);
     }
 
@@ -26,7 +27,8 @@ public class GroupApi {
     }
 
     @PatchMapping("update/{id}")
-    public GroupResponse updateGroup(@PathVariable("id") Long id, @RequestBody GroupRequest groupRequest) {
+    public GroupResponse updateGroup(@PathVariable("id") Long id,
+                                     @RequestBody GroupRequest groupRequest) {
         return groupService.updateGroup(id, groupRequest);
     }
 

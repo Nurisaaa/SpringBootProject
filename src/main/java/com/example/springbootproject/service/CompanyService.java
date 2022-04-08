@@ -7,7 +7,7 @@ import java.util.List;
 public interface CompanyService {
     CompanyResponse saveCompany(CompanyRequest companyRequest);
     List<CompanyResponse> getAllCompanies();
-    CompanyResponse getCompanyById(long id);
+    CompanyResponse getCompanyById(Long id);
     void deleteCompanyById(Long id);
     CompanyResponse updateCompany(Long id,CompanyRequest company);
 }

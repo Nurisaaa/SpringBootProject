@@ -1,4 +1,4 @@
-package com.example.springbootproject.mapper.view;
+package com.example.springbootproject.dto.mapper.view;
 
 import com.example.springbootproject.dto.responce.StudentResponse;
 import com.example.springbootproject.model.Student;
@@ -19,7 +19,7 @@ public class StudentViewMapper {
         }
         studentResponse.setFirstName(student.getFirstName());
         studentResponse.setLastName(student.getLastName());
-        studentResponse.setEmail(student.getEmail());
+//        studentResponse.setEmail(student.getEmail());
         studentResponse.setStudyFormat(String.valueOf(student.getStudyFormat()));
         return studentResponse;
     }

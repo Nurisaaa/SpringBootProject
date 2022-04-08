@@ -2,8 +2,9 @@ package com.example.springbootproject.service.serviceImpl;
 
 import com.example.springbootproject.dto.request.CourseRequest;
 import com.example.springbootproject.dto.responce.CourseResponse;
-import com.example.springbootproject.mapper.edit.CourseEditMapper;
-import com.example.springbootproject.mapper.view.CourseViewMapper;
+import com.example.springbootproject.exception.BadRequest;
+import com.example.springbootproject.dto.mapper.edit.CourseEditMapper;
+import com.example.springbootproject.dto.mapper.view.CourseViewMapper;
 import com.example.springbootproject.model.Company;
 import com.example.springbootproject.model.Course;
 import com.example.springbootproject.repository.CompanyRepository;
@@ -25,12 +26,17 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CourseResponse saveCourse(Long id, CourseRequest courseRequest) {
-        Company company = companyRepository.getById(id);
+        Company company = companyRepository.findById(id)
+                .orElseThrow(() -> new BadRequest(
+                        String.format("Company with this %d does not exist " , id)
+                )
+        );
         return courseViewMapper
                 .viewCourse(courseRepository
                         .save(editMapper
                                 .saveCourse(company, courseRequest)));
     }
+
 
     @Override
     public List<CourseResponse> getAllCourse(Long id) {
@@ -40,27 +46,34 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CourseResponse getByIdCourse(long id) {
-        Course course = courseRepository.getById(id);
+        Course course = getCourse(id);
         return courseViewMapper.viewCourse(course);
     }
 
     @Override
     public void deleteCourse(long id) {
-        Course course = courseRepository.getById(id);
+        Course course = getCourse(id);
         courseRepository.delete(course);
     }
 
     @Override
     public CourseResponse updateCourse(Long id, CourseRequest courseRequest) {
-        Course course = courseRepository.findById(id).get();
+        Course course = getCourse(id);
         editMapper.update(course, courseRequest);
-        return courseViewMapper
-                .viewCourse(courseRepository.save(course));
+        return courseViewMapper.viewCourse(courseRepository.save(course));
     }
 
     @Override
     public CourseResponse getCourseByName(String name, long id) {
 
         return null;
+    }
+
+    private Course getCourse(Long id) {
+        Course course = courseRepository.findById(id)
+                .orElseThrow(() -> new BadRequest(
+                        String.format("Course with this %d does not exist ", id)
+                ));
+        return course;
     }
 }

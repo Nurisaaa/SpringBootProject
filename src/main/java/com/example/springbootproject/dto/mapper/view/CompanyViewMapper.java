@@ -1,4 +1,4 @@
-package com.example.springbootproject.mapper.view;
+package com.example.springbootproject.dto.mapper.view;
 
 import com.example.springbootproject.dto.responce.CompanyResponse;
 import com.example.springbootproject.model.Company;
@@ -20,7 +20,7 @@ public class CompanyViewMapper {
         }
         companyResponse.setName(company.getName());
         companyResponse.setLocatedCountry(company.getLocatedCountry());
-        companyResponse.setCourses(company.getCourses());
+//        companyResponse.setCourses(company.getCourses());
         return companyResponse;
     }
 

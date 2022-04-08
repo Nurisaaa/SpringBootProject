@@ -12,5 +12,5 @@ public class CompanyResponse {
     private Long id;
     private String name;
     private String locatedCountry;
-    private List<Course> courses;
+
 }

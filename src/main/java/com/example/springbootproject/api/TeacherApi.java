@@ -5,7 +5,6 @@ import com.example.springbootproject.dto.responce.TeacherResponse;
 import com.example.springbootproject.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -15,12 +14,14 @@ public class TeacherApi {
     private final TeacherService teacherService;
 
     @PostMapping
-    public TeacherResponse saveTeacher(@RequestBody TeacherRequest teacherRequest, @PathVariable("courseId") Long id) {
+    public TeacherResponse saveTeacher(@RequestBody TeacherRequest teacherRequest,
+                                       @PathVariable("courseId") Long id) {
         return teacherService.saveTeacher(id, teacherRequest);
     }
 
     @PatchMapping("{id}")
-    public TeacherResponse updateTeacher(@PathVariable("id") Long id, @RequestBody TeacherRequest teacherRequest) {
+    public TeacherResponse updateTeacher(@PathVariable("id") Long id,
+                                         @RequestBody TeacherRequest teacherRequest) {
         return teacherService.updateTeacher(id, teacherRequest);
     }
 

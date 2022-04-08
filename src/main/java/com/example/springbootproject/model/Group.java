@@ -40,8 +40,7 @@ public class Group {
     private List<Course> courses;
 
     @OneToMany(cascade = ALL,
-            mappedBy = "group",
-            fetch = FetchType.LAZY)
+            mappedBy = "group")
     private List<Student> students;
 
     public void setCourses(Course course) {

@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 import static javax.persistence.CascadeType.*;
+import static javax.persistence.FetchType.EAGER;
 
 @Entity
 @Getter
@@ -26,10 +27,13 @@ public class Teacher {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    private String email;
     @JsonIgnore
     @OneToOne(cascade = {PERSIST, MERGE, DETACH, REFRESH},
             fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private Course course;
+    @OneToOne(cascade = {MERGE, REFRESH, PERSIST},
+            orphanRemoval = true,
+            fetch = EAGER)
+    private AuthInfo authInfo;
 }
